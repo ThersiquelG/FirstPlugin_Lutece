@@ -1,0 +1,10 @@
+<#macro tabs2 tab >
+<@tabs>
+	<@listTabs>
+			<li <#if tab="project">class="active"</#if>>
+				<a href="jsp/admin/plugins/example/ManageProjects.jsp">#i18n{example.manage_projects.pageTitle}</a>
+			</li>
+	</@listTabs>
+</@tabs>
+
+</#macro>
