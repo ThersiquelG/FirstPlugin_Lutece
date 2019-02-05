@@ -18,8 +18,15 @@
           <@formGroup labelFor='image_url' labelKey='#i18n{example.create_project.labelImageUrl}' helpKey='#i18n{example.create_project.labelImageUrl.help}' mandatory=true>
 						<@input type="text" id="image_url" name="image_url" value="${project.imageUrl!''}"  maxlength=255 tabIndex="3" />
 					</@formGroup>
-        <@formGroup>
-          <@button name='action_createProject' type='submit' tabIndex='3' title='#i18n{portal.util.labelCreate}' buttonIcon='plus' />
+					
+					 <@formGroup labelFor='cost' labelKey='#i18n{example.create_project.labelCost}' helpKey='#i18n{example.create_project.labelCost.help}' mandatory=true>
+						<@input type="number" id="cost" name="cost" value="${project.cost!''}"  tabIndex="4" />
+					</@formGroup>
+					
+					
+					
+				<@formGroup>
+					<@button name='action_createProject' type='submit' tabIndex='3' title='#i18n{portal.util.labelCreate}' buttonIcon='plus' />
 					<@button name='view_manageProjects' type='submit' title='#i18n{portal.util.labelCancel}' buttonIcon='close' color='btn-secondary' />
 				</@formGroup>
         </fieldset>

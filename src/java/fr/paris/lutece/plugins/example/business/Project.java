@@ -33,8 +33,12 @@
  */ 
 package fr.paris.lutece.plugins.example.business;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 import java.io.Serializable;
 
@@ -59,8 +63,29 @@ public class Project implements Serializable
     @NotEmpty( message = "#i18n{example.validation.project.ImageUrl.notEmpty}" )
     @Size( max = 255 , message = "#i18n{example.validation.project.ImageUrl.size}" ) 
     private String _strImageUrl;
+    
+    @NotNull( message = "#i18n{example.validation.project.Cost.notNull}")
+    @Range(min= 5, max=25, message = "#i18n{example.validation.project.Cost.range}")
+    private int cost;
+
+    	
+    /**
+     * Returns the Cost
+     * @return The Cost
+     */
+    public int getCost() {
+		return cost;
+	}
 
     /**
+     * Sets the Cost
+     * @param cost the Cost
+     */
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	/**
      * Returns the Id
      * @return The Id
      */
