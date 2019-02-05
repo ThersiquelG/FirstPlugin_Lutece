@@ -9,6 +9,51 @@ This application was generated with the Lutèce pluginWizard, and upgraded to de
 
 A step-by-step tutorial is available : consult the "Lutece_example_tutorial.md" file.
 
+
+## Modify the view and pages
+
+To modify the templates of the front-office ( user pages ) /webapp/WEB-INF/plugins/your_plugin/templates.
+
+After that you have to use mvn lutece:exploded positionned in the project folder.
+
+To see the modifications of the template live, you can apply those change to the template contained at this path 
+
+C:\Users\user_name\Documents\your_workspace\lutece-dev-plugin-example\target\lutece\WEB-INF\templates\skin\plugins\example
+
+but don't forget to copy those changes into the template of the same page under /webap/WEB-INF/plugins..
+
+
+## Add  a page for the front-office
+You have to edit the XPage file here 
+C:\Users\user_name\Documents\your_workspace\lutece-dev-plugin-example\src\java\fr\paris\lutece\plugins\example\web
+
+Under the //templates comment 
+add your template.html like that 
+
+private static final String TEMPLATE_DETAILS_PROJECT="/skin/plugins/example/details_project.html";
+The page I'm about to add is details_project. 
+
+
+Also add it under the //view comment 
+
+   private static final String VIEW_DETAILS_PROJECT= "detailsProject";
+   
+   
+   now create the method among the others for your model to fill your template for the view.
+
+    @View( VIEW_DETAILS_PROJECT )
+    public XPage getDetailsProject( HttpServletRequest request) {
+    	int nId = Integer.parseInt(request.getParameter(PARAMETER_ID_PROJECT));
+    	if(_project == null || (_project.getId( ) != nId)) {
+    		_project = ProjectHome.findByPrimaryKey(nId);
+    	}
+    	
+    	Map<String, Object> model = getModel ( );
+		model.put( MARK_PROJECT, _project );
+		return getXPage (TEMPLATE_DETAILS_PROJECT, request.getLocale( ), model);
+    }
+
+
 ## Configuration
 
 JDK1.8
